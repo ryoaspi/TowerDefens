@@ -7,7 +7,7 @@ public class Cells : MonoBehaviour
 {
     #region Publics
 
-    public enum CellType{Path, Buildable};
+    public enum CellType{Path, Buildable, Empty, Mine};
     public int m_pathIndex => _pathIndex;
     public CellType m_cellTypeEffect => _cellTypeEffect;
     
@@ -25,7 +25,7 @@ public class Cells : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_isOccupied == false)
+        if (_isOccupied == false && _cellTypeEffect == CellType.Buildable)
         {
             Instantiate(_tourPrefab,transform.position,Quaternion.identity);
             _isOccupied = true;
@@ -49,6 +49,13 @@ public class Cells : MonoBehaviour
                 break;
             case CellType.Buildable:
                 _colors.color = Color.gray;
+                _isOccupied = false;
+                break;
+            case CellType.Empty:
+                gameObject.SetActive(false);
+                break;
+            case CellType.Mine:
+                _colors.color = Color.yellow;
                 _isOccupied = false;
                 break;
         }

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -14,32 +15,35 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        WaypointsManager manager = FindAnyObjectByType<WaypointsManager>();
-        if (manager != null)
-        {
-            _waypoints = manager.m_waypoints;
-            Debug.Log("Waypoints reçus : " + _waypoints.Length);
+        _manager = FindAnyObjectByType<WaypointsManager>();
+        // if (manager != null)
+        // {
+        //     // for (int i = 0; i < manager.m_waypoints.Length; i++)
+        //     // {
+        //     //     _waypoints[i] = manager.m_waypoints[i];
+        //     //     Debug.Log("Waypoints reçus : " + _waypoints.Length);
+        //     //     
+        //     // }
+        //         
+        // }
+        // else Debug.LogWarning("WaypointsManager is null");
         }
-        else Debug.LogWarning("WaypointsManager is null");
-        
-        _gameObject= gameObject;
-    }
 
     private void Update()
     {
-        if (_waypoints == null || _waypointIndex >= _waypoints.Length) return;
-        Transform target = _waypoints[_waypointIndex];
+        
+        Transform target = _manager.m_waypoints[_waypointIndex];
         Vector3 direction = target.position - transform.position; 
         transform.Translate(direction.normalized * (Time.deltaTime * _speed), Space.World);
         
-        if (Vector3.Distance(transform.position, _waypoints[_waypointIndex].position) < 0.1f)
+        if (Vector3.Distance(transform.position, _manager.m_waypoints[_waypointIndex].position) < 0.1f)
         {
             _waypointIndex++;
         }
 
-        if (_waypointIndex == _waypoints.Length)
+        if (_waypointIndex == _manager.m_waypoints.Length)
         {
-            _gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
@@ -62,11 +66,12 @@ public class EnemyMovement : MonoBehaviour
     
     #region Private And Methods
 
-    [SerializeField] private Transform[] _waypoints;
+    private Transform[] _waypoints;
     [SerializeField] private float _speed;
     private int _waypointIndex;
     private GameObject _gameObject;
-    
+    private WaypointsManager _manager;
+
 
     #endregion
 }

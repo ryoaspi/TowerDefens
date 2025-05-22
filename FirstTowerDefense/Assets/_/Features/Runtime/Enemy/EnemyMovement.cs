@@ -16,18 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         _manager = FindAnyObjectByType<WaypointsManager>();
-        // if (manager != null)
-        // {
-        //     // for (int i = 0; i < manager.m_waypoints.Length; i++)
-        //     // {
-        //     //     _waypoints[i] = manager.m_waypoints[i];
-        //     //     Debug.Log("Waypoints reçus : " + _waypoints.Length);
-        //     //     
-        //     // }
-        //         
-        // }
-        // else Debug.LogWarning("WaypointsManager is null");
-        }
+    }
 
     private void Update()
     {
@@ -69,7 +58,6 @@ public class EnemyMovement : MonoBehaviour
     private Transform[] _waypoints;
     [SerializeField] private float _speed;
     private int _waypointIndex;
-    private GameObject _gameObject;
     private WaypointsManager _manager;
 
 

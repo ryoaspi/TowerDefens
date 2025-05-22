@@ -7,7 +7,7 @@ public class Cells : MonoBehaviour
 {
     #region Publics
 
-    public enum CellType{Path, Buildable, Empty, Mine};
+    public enum CellType{Path, Buildable, Empty, Mine, Spawn, Base};
     public int m_pathIndex => _pathIndex;
     public CellType m_cellTypeEffect => _cellTypeEffect;
     
@@ -58,6 +58,14 @@ public class Cells : MonoBehaviour
                 _colors.color = Color.yellow;
                 _isOccupied = false;
                 break;
+            case CellType.Spawn:
+                _colors.color = Color.red;
+                _isOccupied = true;
+                break;
+            case CellType.Base:
+                _colors.color = Color.blue;
+                _isOccupied = true;
+                break;
         }
     }
     
@@ -76,7 +84,8 @@ public class Cells : MonoBehaviour
     [SerializeField] private GameObject _tourPrefab;
     [SerializeField] private int _pathIndex;
     [SerializeField] private CellType _cellTypeEffect;
-    private bool _isOccupied = false;
+    [SerializeField] private GameObject _minePrefab;
+    private bool _isOccupied;
     private SpriteRenderer _colors;
 
     #endregion

@@ -148,3 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tourPrefab: {fileID: 3825794431048009086, guid: cba4f5476f648a14192641878da046a9, type: 3}
+  _pathIndex: 0
+  _cellTypeEffect: 0
+  _minePrefab: {fileID: 1310561410290449884, guid: 2e0b2906dd8c3cd45a822c4b513a9b33, type: 3}

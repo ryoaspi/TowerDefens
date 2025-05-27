@@ -1,8 +1,13 @@
 using UnityEngine;
 
 public class Gridmanager : MonoBehaviour
-{
-   #region Api Unity
+{ 
+    #region Publics
+    
+    #endregion
+    
+    
+    #region Api Unity
    
     private void Awake()
     {
@@ -26,6 +31,7 @@ public class Gridmanager : MonoBehaviour
             currentcellpos = new Vector3Int(position.x,position.y,0);
             currentcell = Instantiate(_grid,currentcellpos,Quaternion.identity, _parentContainer );
             currentcell.name = "Cell : " + i;
+            
         }
     }
 

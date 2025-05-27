@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 
 
@@ -61,6 +61,7 @@ public class Cells : MonoBehaviour
             case CellType.Spawn:
                 _colors.color = Color.red;
                 _isOccupied = true;
+                gameObject.AddComponent<Spawner>();
                 break;
             case CellType.Base:
                 _colors.color = Color.blue;

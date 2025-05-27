@@ -14,12 +14,6 @@ public class WaypointsManager : MonoBehaviour
     {
         GenerateWaypointsPath();
     }
-
-    
-    void Update()
-    {
-        
-    }
     
     #endregion
     
@@ -29,14 +23,13 @@ public class WaypointsManager : MonoBehaviour
     private void GenerateWaypointsPath()
     {
         Cells[] allCells = FindObjectsOfType<Cells>(); // récupere toutes les cellules de type path
-        Debug.Log("Nombre de cellules trouvées : " + allCells.Length);
+        
         
         // Garde uniquement les cellules  de type path
         var pathCells = allCells
             .Where(cells => cells.m_cellTypeEffect == Cells.CellType.Path)
             .OrderBy(cells => cells.m_pathIndex) // trier par ordre croissant
             .ToArray();
-        Debug.Log("Nombre de cellules PATH trouvées : " + pathCells.Length);
         
         // stocke tous leur transform dans le tableau
         _waypoints = new Transform[pathCells.Length];

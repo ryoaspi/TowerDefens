@@ -1,8 +1,5 @@
 using UnityEngine;
 
-
-
-
 public class Cells : MonoBehaviour
 {
     #region Publics
@@ -30,7 +27,6 @@ public class Cells : MonoBehaviour
             Instantiate(_tourPrefab,transform.position,Quaternion.identity);
             _isOccupied = true;
         }
-        
     }
 
     #endregion
@@ -61,7 +57,7 @@ public class Cells : MonoBehaviour
             case CellType.Spawn:
                 _colors.color = Color.red;
                 _isOccupied = true;
-                gameObject.AddComponent<Spawner>();
+                GetComponent<Spawner>().enabled = true;
                 break;
             case CellType.Base:
                 _colors.color = Color.blue;
@@ -85,7 +81,6 @@ public class Cells : MonoBehaviour
     [SerializeField] private GameObject _tourPrefab;
     [SerializeField] private int _pathIndex;
     [SerializeField] private CellType _cellTypeEffect;
-    [SerializeField] private GameObject _minePrefab;
     private bool _isOccupied;
     private SpriteRenderer _colors;
 

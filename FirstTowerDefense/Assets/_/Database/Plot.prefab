@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 411448325306342555}
   - component: {fileID: 260143102457652073}
   - component: {fileID: -2602367002827104391}
+  - component: {fileID: 8863285322820883260}
   m_Layer: 0
   m_Name: Plot
   m_TagString: Untagged
@@ -151,3 +152,21 @@ MonoBehaviour:
   _pathIndex: 0
   _cellTypeEffect: 0
   _minePrefab: {fileID: 1310561410290449884, guid: 2e0b2906dd8c3cd45a822c4b513a9b33, type: 3}
+--- !u!114 &8863285322820883260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762169896701810472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5c90daa4cdcdf488f87cae9257f300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab:
+  - {fileID: 7916884705379573866, guid: a045b6b60a6581f4292e8978e3e039a4, type: 3}
+  _spawnRate: 0
+  _maxEnemies: 0
+  _waveDelay: 5
+  _enemiesPerWave: 05000000080000000c000000

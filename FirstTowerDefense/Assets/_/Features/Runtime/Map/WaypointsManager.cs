@@ -49,5 +49,6 @@ public class WaypointsManager : MonoBehaviour
     #region Private And Protected
     
     private  Transform[] _waypoints;
+    
     #endregion
 }

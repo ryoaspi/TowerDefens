@@ -55,7 +55,6 @@ public class Spawner : MonoBehaviour
     
     [SerializeField] private GameObject[] _enemyPrefab;
     [SerializeField] private float _spawnRate;
-    [SerializeField] private int _maxEnemies;
     [SerializeField] private float _waveDelay = 5f;
     [SerializeField] private int[] _enemiesPerWave = {5,8,12};
     

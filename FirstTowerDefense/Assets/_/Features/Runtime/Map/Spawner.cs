@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -5,64 +6,92 @@ public class Spawner : MonoBehaviour
 {
     #region Api Unity
 
+    private void Start()
+    {
+        if (_waves.Length > 0)
+        {
+            _waveDelayTimer = _waves[0].m_waveDelay;
+        }
+    }
+
     private void Update()
     {
-        if (_enemyCount >= _enemiesPerWave.Length) return;
-        _nextSpawn += Time.deltaTime;
-        if (_waveInProgress)
+        if (_currentWaveIndex >= _waves.Length) return;
+
+        if (!_waveInProgress)
         {
-            if (_spawnThisWave < _enemiesPerWave[_enemyCount] && _nextSpawn >= _spawnRate)
+            _waveDelayTimer -= Time.deltaTime;
+            if (_waveDelayTimer <= 0f)
             {
-                SpawnEnemy();
-                _spawnThisWave++;
-                _nextSpawn = 0f;
+                StartWave();
             }
         }
-
-        if (_spawnThisWave >= _enemiesPerWave[_enemyCount])
-        {
-            _waveInProgress = false;
-            _nextSpawn = 0f;
-        }
-        else
-        {
-            if (_nextSpawn >= _spawnRate)
-            {
-                _enemyCount++;
-                _spawnThisWave = 0;
-                _waveInProgress = true;
-                _nextSpawn = 0f;
-            }
-        }
-
+        if (_spawningWaves) SpawnWave();
     }
+
+  
 
     #endregion
     
     
     #region Utils
-
-    private void SpawnEnemy()
+    
+    private void StartWave()
     {
-        int enemy = Random.Range(0, _enemyPrefab.Length);
-        Instantiate(_enemyPrefab[enemy], transform.position, Quaternion.identity);
+        _waveInProgress = true;
+        _spawningWaves = true;
+        _currentEnemyTypeIndex = 0;
+        _spawnedCountForType = 0;
+        _spawnTimer = 0f;
+    }
+
+    private void SpawnWave()
+    {
+        WaveSet currentWaveSet = _waves[_currentWaveIndex];
+        if (_currentEnemyTypeIndex >= currentWaveSet.m_waves.Length)
+        {
+            _spawningWaves = false;
+            _waveInProgress= false;
+            _currentWaveIndex++;
+            
+            if (_currentWaveIndex < _waves.Length) 
+                _waveDelayTimer = _waves[_currentWaveIndex].m_waveDelay;
+            return;
+        }
+
+        EnemyWaveData currentEnemy = currentWaveSet.m_waves[_currentWaveIndex].m_enemiesInWave[_currentEnemyTypeIndex];
+        
+        _spawnTimer += Time.deltaTime;
+        if (_spawnedCountForType < currentEnemy.m_count && _spawnTimer >= currentEnemy.m_spawnDelay)
+        {
+            Instantiate(currentEnemy.m_enemyPrefab, _spawnPoint.position, Quaternion.identity);
+            _spawnedCountForType++;
+            _spawnTimer = 0f;
+        }
+
+        if (_spawnedCountForType >= currentEnemy.m_count)
+        {
+            _currentEnemyTypeIndex++;
+            _spawnedCountForType = 0;
+            _spawnTimer = 0f;
+        }
     }
     
     #endregion
     
     
     #region Private And Protected
-    
-    [SerializeField] private GameObject[] _enemyPrefab;
-    [SerializeField] private float _spawnRate;
-    [SerializeField] private float _waveDelay = 5f;
-    [SerializeField] private int[] _enemiesPerWave = {5,8,12};
-    
-    private float _nextSpawn;
-    private Vector3 _spawnPosition;
-    private int _enemyCount;
-    private int _spawnThisWave;
-    private bool _waveInProgress;
+
+    [SerializeField] private WaveSet[] _waves;
+    [SerializeField] private Transform _spawnPoint;
+
+    private int _currentWaveIndex = 0;
+    private int _currentEnemyTypeIndex = 0;
+    private int _spawnedCountForType = 0;
+    private float _spawnTimer = 0f;
+    private float _waveDelayTimer = 0f;
+    private bool _waveInProgress = false;
+    private bool _spawningWaves = false;
 
     #endregion
 

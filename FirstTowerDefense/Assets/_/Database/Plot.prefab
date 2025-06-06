@@ -151,7 +151,6 @@ MonoBehaviour:
   _tourPrefab: {fileID: 3825794431048009086, guid: cba4f5476f648a14192641878da046a9, type: 3}
   _pathIndex: 0
   _cellTypeEffect: 0
-  _minePrefab: {fileID: 1310561410290449884, guid: 2e0b2906dd8c3cd45a822c4b513a9b33, type: 3}
 --- !u!114 &8863285322820883260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,9 +163,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5c90daa4cdcdf488f87cae9257f300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab:
-  - {fileID: 7916884705379573866, guid: a045b6b60a6581f4292e8978e3e039a4, type: 3}
-  _spawnRate: 0
-  _maxEnemies: 0
-  _waveDelay: 5
-  _enemiesPerWave: 05000000080000000c000000
+  _waves: []
+  _spawnPoint: {fileID: 2815727404917990301}

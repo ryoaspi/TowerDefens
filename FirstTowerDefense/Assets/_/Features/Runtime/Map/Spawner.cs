@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -29,7 +27,6 @@ public class Spawner : MonoBehaviour
         if (_spawningWaves) SpawnWave();
     }
 
-  
 
     #endregion
     
@@ -44,11 +41,14 @@ public class Spawner : MonoBehaviour
         _spawnedCountForType = 0;
         _spawnTimer = 0f;
     }
-
+    
     private void SpawnWave()
     {
         WaveSet currentWaveSet = _waves[_currentWaveIndex];
-        if (_currentEnemyTypeIndex >= currentWaveSet.m_waves.Length)
+        WaveData currentWaveData = currentWaveSet.m_waves[_currentWaveIndex];
+        
+        
+        if (_currentEnemyTypeIndex >= currentWaveData.m_enemiesInWave.Length)
         {
             _spawningWaves = false;
             _waveInProgress= false;
@@ -59,12 +59,20 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        EnemyWaveData currentEnemy = currentWaveSet.m_waves[_currentWaveIndex].m_enemiesInWave[_currentEnemyTypeIndex];
+        EnemyWaveData currentEnemy = currentWaveData.m_enemiesInWave[_currentEnemyTypeIndex];
         
         _spawnTimer += Time.deltaTime;
         if (_spawnedCountForType < currentEnemy.m_count && _spawnTimer >= currentEnemy.m_spawnDelay)
         {
-            Instantiate(currentEnemy.m_enemyPrefab, _spawnPoint.position, Quaternion.identity);
+            GameObject enemyInstance = EnemyPoolManager.Instance.GetEnemy(currentEnemy.m_enemyPrefab,_spawnPoint.position, Quaternion.identity);
+            
+            // Bonus :Appliquer un multiplicateur de pv basé sur la vague
+            float healthMultiplier = 1f + (_currentWaveIndex * 0.1f);
+            EnemyMovement enemyScript = enemyInstance.GetComponent<EnemyMovement>();
+            if (enemyScript != null)
+            {
+                enemyScript.ApplyHealthMultiplier(healthMultiplier);
+            }
             _spawnedCountForType++;
             _spawnTimer = 0f;
         }

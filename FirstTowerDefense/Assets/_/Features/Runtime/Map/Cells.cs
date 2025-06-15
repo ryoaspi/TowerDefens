@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Cells : MonoBehaviour
@@ -46,6 +47,23 @@ public class Cells : MonoBehaviour
             case CellType.Buildable:
                 _colors.color = Color.gray;
                 _isOccupied = false;
+                
+                // Ajouter le collider s’il n'existe pas déjà
+                if (GetComponent<BoxCollider2D>() == null)
+                {
+                    gameObject.AddComponent<BoxCollider2D>();
+                }
+
+                // Activer le script qui gère le clic
+                if (GetComponent<CellInteractor>() != null)
+                {
+                    GetComponent<CellInteractor>().enabled = true;
+                }
+                else
+                {
+                    gameObject.AddComponent<CellInteractor>();
+                }
+
                 break;
             case CellType.Empty:
                 gameObject.SetActive(false);
@@ -86,3 +104,4 @@ public class Cells : MonoBehaviour
 
     #endregion
 }
+

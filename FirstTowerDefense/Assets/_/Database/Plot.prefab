@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 260143102457652073}
   - component: {fileID: -2602367002827104391}
   - component: {fileID: 8863285322820883260}
+  - component: {fileID: 6210743310779865895}
   m_Layer: 0
   m_Name: Plot
   m_TagString: Untagged
@@ -158,10 +159,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2762169896701810472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5c90daa4cdcdf488f87cae9257f300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _waves: []
   _spawnPoint: {fileID: 2815727404917990301}
+--- !u!114 &6210743310779865895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762169896701810472}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9dcb3d97bdb76e4a859b7ac27c18c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isBuildable: 1
+  _buildMenuPrefab: {fileID: 7605823571489125674, guid: e26da7b592366d243a5d036a563046e8, type: 3}

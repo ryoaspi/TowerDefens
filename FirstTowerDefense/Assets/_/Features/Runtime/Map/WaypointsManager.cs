@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -20,9 +21,10 @@ public class WaypointsManager : MonoBehaviour
     #region Main Methods
 
   
+    
     private void GenerateWaypointsPath()
     {
-        Cells[] allCells = FindObjectsOfType<Cells>(); // récupere toutes les cellules de type path
+        Cells[] allCells = FindObjectsByType<Cells>(FindObjectsSortMode.None); // récupere toutes les cellules de type path
         
         
         // Garde uniquement les cellules  de type path

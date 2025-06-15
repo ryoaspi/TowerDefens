@@ -16,5 +16,5 @@ MonoBehaviour:
   - m_enemiesInWave:
     - m_enemyPrefab: {fileID: 7916884705379573866, guid: a045b6b60a6581f4292e8978e3e039a4, type: 3}
       m_count: 10
-      m_spawnDelay: 0.1
+      m_spawnDelay: 0.3
   m_waveDelay: 5

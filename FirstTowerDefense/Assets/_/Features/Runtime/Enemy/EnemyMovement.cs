@@ -38,15 +38,33 @@ public class EnemyMovement : MonoBehaviour
     
     
     #region Main Methods
+
+    public void ApplyHealthMultiplier(float multiplier)
+    {
+        _currentHealth = _baseHealth * multiplier;
+    }
     
+    public void Init(GameObject prefab)
+    {
+        _myprefab = prefab;
+    }
     
+    public void Death()
+    {
+        if (_currentHealth <= 0)
+        {
+            EnemyPoolManager.Instance.ReturnToPool(gameObject,_myprefab);
+        }
+    }
+
+
     
     #endregion
     
     
     #region Utils
-    
-    
+
+
     
     #endregion
     
@@ -57,6 +75,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _speed;
     private int _waypointIndex;
     private WaypointsManager _manager;
+    [SerializeField] private float _baseHealth = 100;
+    private float _currentHealth;
+    private GameObject _myprefab;
+    
 
 
     #endregion

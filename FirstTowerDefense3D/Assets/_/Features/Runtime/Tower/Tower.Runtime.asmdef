@@ -1,0 +1,18 @@
+{
+    "name": "Tower.Runtime",
+    "rootNamespace": "Tower.Runtime",
+    "references": [
+        "GUID:476fe10ca481cda4c8fba72a0f7c4667",
+        "GUID:e4325ff77d3567745bd3d87ed2147783",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
